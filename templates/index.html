@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CLUTCH IQ</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>🔴 CLUTCH IQ</h1>
+
+<div class="mode-buttons">
+    <button onclick="showMode('strategy')">🧠 Strategy Mode</button>
+    <button onclick="showMode('aim')">🎯 Aim Practice</button>
+</div>
+
+<!-- ================= STRATEGY MODE ================= -->
+<div id="strategy-mode">
+
+    <h2>{{ situation.text }}</h2>
+
+
+    <p><b>Weapon:</b> {{ situation.weapon }}</p>
+    <p><b>Abilities:</b> {{ situation.abilities | join(", ") }}</p>
+
+    <div id="action-box">
+        <img id="img-smoke" src="{{ url_for('static', filename='images/smoke.jpg') }}">
+        <img id="img-flash" src="{{ url_for('static', filename='images/flash.jpg') }}">
+        <img id="img-push"  src="{{ url_for('static', filename='images/push.jpg') }}">
+        <img id="img-peek"  src="{{ url_for('static', filename='images/peek.jpg') }}">
+        <img id="img-plant" src="{{ url_for('static', filename='images/plant.jpg') }}">
+        <img id="img-hold"  src="{{ url_for('static', filename='images/hold.jpg') }}">
+        <img id="img-win"   src="{{ url_for('static', filename='images/win.jpg') }}">
+        <img id="img-fail"  src="{{ url_for('static', filename='images/fail.jpg') }}">
+    </div>
+
+    <h3>Choose your move</h3>
+
+    <div id="choices">
+        <button onclick="choose('smoke')">Smoke</button>
+        <button onclick="choose('flash')">Flash</button>
+        <button onclick="choose('push')">Push</button>
+        <button onclick="choose('peek')">Peek</button>
+        <button onclick="choose('plant')">Plant</button>
+        <button onclick="choose('hold')">Hold</button>
+    </div>
+
+    <button onclick="finish()">Finish Round</button>
+    <button onclick="replayStrategy()">Replay</button>
+
+    <div id="path"></div>
+    <div id="result"></div>
+</div>
+
+<!-- ================= AIM PRACTICE ================= -->
+<div id="aim-mode" style="display:none;">
+    <h2>🎯 Aim Practice (30s)</h2>
+    <p>Targets spawn continuously and disappear after 2 seconds</p>
+
+    <div id="aim-area"></div>
+
+    <p>Hits: <span id="hits">0</span></p>
+
+    <button onclick="startAim()">Start / Replay</button>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
